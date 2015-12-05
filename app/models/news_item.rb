@@ -4,4 +4,5 @@ class NewsItem < ActiveRecord::Base
   scope :published, -> { where(state: :published).order(published_at: :desc) }
   validates :published_at, presence: true, if: -> { state.published? }
   validates_presence_of :title, :state
+  to_param :title
 end
