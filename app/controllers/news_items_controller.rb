@@ -4,7 +4,9 @@ class NewsItemsController < ApplicationController
   end
 
   def show
-    @news_item = news_item_scope.find(params[:id])
+    @news_item = news_item_scope.where(slug: params[:slug]).first ||
+                 news_item_scope.where(id: params[:id]).first ||
+                 raise(ActiveRecord::RecordNotFound)
   end
 
   private

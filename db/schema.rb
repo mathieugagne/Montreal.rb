@@ -94,8 +94,10 @@ ActiveRecord::Schema.define(version: 20151204172708) do
     t.string   "title"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.string   "legacy_slug"
+    t.string   "slug"
   end
+
+  add_index "news_items", ["slug"], name: "index_news_items_on_slug", using: :btree
 
   create_table "organization_translations", force: :cascade do |t|
     t.integer  "organization_id", null: false

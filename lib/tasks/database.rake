@@ -15,11 +15,11 @@ namespace :database do
 
         news_item.state        = published_at > DateTime.new(2015, 1, 1).beginning_of_year ? :published : :archived
         news_item.title        = data["post_title"]
-        news_item.body         = data['post_content']
+        news_item.body         = data["post_content"]
         news_item.published_at = data["post_date"]
         # url: http://www.montrealrb.com/[post_date:YYYY]/[post_date:MM]/[post_name]
-        news_item.legacy_slug = "#{published_at.strftime("%Y")}/#{published_at.strftime("%m")}/#{data["post_name"]}"
-        puts news_item.legacy_slug
+        news_item.slug = data["post_name"]
+        puts news_item.slug
         begin
           news_item.save!
         rescue => e

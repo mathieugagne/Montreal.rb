@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :events, only: [:index, :show]
+
+  # NewsItem compatibility with old wordpress Posts url
+  get "/:year/:month/:slug", to: "news_items#show", constraints: { year: /\d{4}/, month: /\d{2}/ }
   resources :news_items, only: [:index, :show]
+
   resources :organizations, only: [:index, :show]
   resources :pages, only: [:show]
 
